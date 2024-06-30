@@ -5,9 +5,9 @@ public class ContaCorrente extends Conta {
     }
 
     @Override
-    public boolean sacar(double valor) {
+    public void sacar(double valor) {
         double novoValor = valor + 2;
-        return super.sacar(novoValor);
+        super.sacar(novoValor);
     }
 
     @Override

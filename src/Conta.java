@@ -17,22 +17,19 @@ public abstract class Conta {
         this.saldo += valor;
     }
 
-    public boolean sacar (double valor) {
-        if (this.saldo > valor){
-            this.saldo -= valor;
-            return true;
-        }else {
-            return false;
+    public void sacar (double valor) {
+        if (this.saldo < valor){
+           throw new RuntimeException("Saldo insuficiente!");
         }
+        this.saldo -= valor;
     }
 
     public abstract void gerarExtrato();
 
     public void transferir (double valor, Conta destino) {
-        boolean saqueRealizado = this.sacar(valor);
-        if(saqueRealizado){
-            destino.depositar(valor);
-        }
+        this.sacar(valor);
+        destino.depositar(valor);
+
     }
 
     public int getAgencia() {
