@@ -10,4 +10,9 @@ public class ContaCorrente extends Conta {
         return super.sacar(novoValor);
     }
 
+    @Override
+    public void gerarExtrato() {
+        System.out.println("Gerando extrato para Conta Corrente.");
+    }
+
 }

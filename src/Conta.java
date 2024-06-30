@@ -26,6 +26,8 @@ public abstract class Conta {
         }
     }
 
+    public abstract void gerarExtrato();
+
     public void transferir (double valor, Conta destino) {
         boolean saqueRealizado = this.sacar(valor);
         if(saqueRealizado){
