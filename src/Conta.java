@@ -19,7 +19,7 @@ public abstract class Conta {
 
     public void sacar (double valor) {
         if (this.saldo < valor){
-           throw new RuntimeException("Saldo insuficiente!");
+           throw new SaldoInsuficienteException("Saldo insuficiente!");
         }
         this.saldo -= valor;
     }
