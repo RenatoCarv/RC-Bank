@@ -1,6 +1,8 @@
+package com.rc.banco.model;
+
 public class ContaCorrente extends Conta {
 
-    public ContaCorrente(int agencia, int numero, Cliente titular){
+    public ContaCorrente(double agencia, double numero, Cliente titular){
         super(agencia, numero, titular);
     }
 
@@ -12,7 +14,6 @@ public class ContaCorrente extends Conta {
 
     @Override
     public void gerarExtrato() {
-        System.out.println("Gerando extrato para Conta Corrente.");
+        System.out.println("Gerando extrato para conta corrente!");
     }
-
 }

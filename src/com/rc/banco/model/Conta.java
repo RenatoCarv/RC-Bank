@@ -1,11 +1,15 @@
+package com.rc.banco.model;
+
+import com.rc.banco.exception.SaldoInsuficienteException;
+
 public abstract class Conta {
-    int agencia;
-    int numero;
-    Cliente titular;
-    double saldo;
+    private double agencia;
+    private double numero;
+    private Cliente titular;
+    private double saldo;
     private static int total;
 
-    public Conta (int agencia, int numero, Cliente titular) {
+    public Conta(double agencia, double numero, Cliente titular){
         this.agencia = agencia;
         this.numero = numero;
         this.titular = titular;
@@ -13,40 +17,37 @@ public abstract class Conta {
         Conta.total++;
     }
 
-    public void depositar (double valor) {
+    public void depositar(double valor){
         this.saldo += valor;
     }
 
-    public void sacar (double valor) {
-        if (this.saldo < valor){
-           throw new SaldoInsuficienteException("Saldo insuficiente!");
+    public void sacar(double valor){
+        if (this.saldo < valor) {
+            throw new SaldoInsuficienteException(STR."Saldo insuficiente, saldo atual: \{getSaldo()}");
         }
         this.saldo -= valor;
     }
 
-    public abstract void gerarExtrato();
-
-    public void transferir (double valor, Conta destino) {
+    public void transferir(double valor, Conta destino){
         this.sacar(valor);
         destino.depositar(valor);
-
     }
 
-    public int getAgencia() {
+    public abstract void gerarExtrato();
+
+    public double getAgencia() {
         return agencia;
     }
 
-    public void setAgencia(int agencia) {
-        if(agencia > 0) {
-            this.agencia = agencia;
-        }
+    public void setAgencia(double agencia) {
+        this.agencia = agencia;
     }
 
-    public int getNumero() {
+    public double getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(double numero) {
         this.numero = numero;
     }
 
@@ -62,8 +63,16 @@ public abstract class Conta {
         return saldo;
     }
 
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
     public static int getTotal() {
         return total;
+    }
+
+    public static void setTotal(int total) {
+        Conta.total = total;
     }
 
     @Override
